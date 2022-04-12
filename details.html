@@ -7,12 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>Booking Form HTML Template</title>
+	<title>Passenger Details </title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet"
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -20,18 +21,11 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		
-		<!-- <script src="..\js\cost.js"></script> -->
+
 </head>
 
 <body onload="AddElement()">
-	<div id="header">
+	<div id="detail-header">
 		<h1><span>Let the Journey Begin</span> </h1>
 	</div>
 
@@ -39,19 +33,40 @@
 		<div id="booking" class="section">
 			<div class="container">
                 <div class="booking-form">
-                    <h4><span id="travel-type">One Way</span></h4>
-                    <h2><span id="originp">SYDNEY</span> to <span id="destinationp">MELBOURNE</span></h2>
-                    <br>
-                    <h4>Departure Date : <span id="departp"></span></h4>
-                    <span id="arrivalp"></span>
-                    <br>
-                    <h4>Passengers: <span id="adultp">2 </span> Adults and <span id="childp"> 0 </span> Children. </h4>	
+					<div class="row">
+						<div class="col-md-6">
+							<h4><span id="travel-type">One Way</span></h4>
+							<h1><span id="originp">SYDNEY</span> to <span id="destinationp">MELBOURNE</span></h1>
+							<br>
+							<h4>Departure Date : <span id="departp"></span></h4>
+							<span id="arrivalp"></span>
+							<br>
+							<h4>Passengers: <span id="adultp">2 </span> Adults and <span id="childp"> 0 </span> Children. </h4>	
+						</div>
+						<div class="col-md-6">
+							<br>
+							<h3>Ticket Cost : </h3>
+							<hr>
+							<h4>Adult Passengers: <span id="adult-cost"> 2 X 55 = 110 AUD</span></h4>
+							<h4 id="child-cost"></h4>
+							<h3>Total Cost : <span id="ticket-cost">140 AUD</span></h3>
+						</div>		
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+						</div>
+						<div class="col-md-4">
+							<br><br>
+							<a href="./index.html"><button class="submit-btn">Cancel Ticket</button></a>
+						</div>		
+					</div>
 				</div>
 
 				<div class="booking-form" id="second-block">
-					<form onsubmit="return validateDetails()" action="thankyou.html">      
+					<form name="form" id="form" action="thankyou.html" method="get">      
                         <h3>Please fill the details below to continue</h3><br>
                         <div id="PassengerInfo"> </div>  
+						<br><h4 id="error-message-passenger"> </h4>
 						<br><hr><br>
 
 						<div class="OtherDetails">
@@ -60,13 +75,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <span class="form-label required">Phone Number </span>
-                                        <input class="form-control p-number"  type="tel" placeholder="Enter your number">
+                                        <input class="form-control" id="p-number" pattern="[0-9]{6,10}" type="tel" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <span class="form-label">Email Id</span>
-                                        <input class="form-control  p-email" type="email" placeholder="Enter your email id">
+                                        <span class="form-label required">Email Id</span>
+                                        <input class="form-control" type="email" required>
                                     </div>
                                 </div>
 								<div class="col-md-3">
@@ -93,6 +108,7 @@
                             </div>
 						</div>
 
+						<br><h4 id="error-message-other"> </h4>
                         <br><hr><br>
 
                         <div class="PaymentDetails">
@@ -100,12 +116,14 @@
                             	<div class="col-md-3">
                                 	<div class="form-group">
                                     	<h4 class="cost-text">Total Cost of the Ticket:</h4><div class ="actual-cost" name = "total" id = "total" type = "text"></div>
+                                    	<h4 id="cost-text">Total Cost: $60</h4>
                                 	</div>
                             	</div>
 								<div class="col-md-4">
                                     <div class="form-group">
-										<span class="form-label">Payment Details</span>
-                                        <select class="form-control payment-method">
+										<span class="form-label required">Payment Method</span>
+                                        <select class="form-control" id="payment-method">
+											<option><--Select--></option>
                                             <option>Master Card</option>
                                             <option>Visa</option>
                                             <option>Paypal</option>
@@ -128,20 +146,24 @@
 					<hr>
 					<div id="profiles">
 						<section class="me">
-							<h4>Saman Uzma </h4>
-							<img src="img\linkedin.png" height="50px">
+							<h4>Saman Uzma</h4>
+							<a href="https://www.linkedin.com/in/samanuzma/" target="_blank"><img src="./img/linkedin.png" height="50px"></a>
 						</section>
 						<section class="me">
-							<h4> Young </h4>
-							<img src="img\linkedin.png" height="50px">
+							<h4>Young Hwa Son</h4>
+							<a href="https://www.linkedin.com/in/young-hwa-son-ab439a150/" target="_blank"><img src="./img/linkedin.png" height="50px"></a>
 						</section>
 						<section class="me">
-							<h4>Sonia </h4>
-							<img src="img\linkedin.png" height="50px">
+							<h4>Sonia Ranjith</h4>
+							<a href="https://www.linkedin.com/in/sonia-ranjith-31b740237/" target="_blank"><img src="./img/linkedin.png" height="50px"></a>
 						</section>
 						<section class="me">
-							<h4>William </h4>
-							<img src="img\linkedin.png" height="50px">
+							<h4>YiRu William Chen</h4>
+							<a href="https://www.linkedin.com/in/yiru-william-chen-9536b961/" target="_blank"><img src="./img/linkedin.png" height="50px"></a>
+						</section>
+						<section class="me">
+							<h4> Sreekanth Manoharan </h4>
+							<a href="https://www.linkedin.com/in/sreekanthmanoharan/" target="_blank"><img src="./img/linkedin.png" height="50px"></a>
 						</section>
 					</div>
 				</div>
@@ -150,7 +172,7 @@
 		</div>
 	</main>
 
-	<script src="js\passengers.js"></script>
+	<script src="js/details.js"></script>
 
 </body>
 </html>

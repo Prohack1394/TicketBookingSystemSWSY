@@ -24,6 +24,10 @@ body{
 	margin-top: -10%;
 }
 
+#main-section {
+	/* font-family: 'PT Sans', sans-serif; */
+	font-family: 'Poppins', sans-serif;
+}
 
 .required:after {
     content:" *";
@@ -53,11 +57,11 @@ body{
 
 #profiles{
 	display: grid;
-	grid-template-columns: repeat(4,1fr);
+	grid-template-columns: repeat(5,1fr);
 }
 
 
-#header {
+#index-header {
 	font-family: 'Poppins', sans-serif;
 	background-image: url('../img/destination.jpg');
 	background-size: cover;
@@ -67,13 +71,36 @@ body{
 	margin-top: -50px;
 }
 
-#header h1{
+#main-thankyou{
+	font-family: 'Poppins', sans-serif;
+	background-image: url('../img/thankyou2.jpg');
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	text-align: center;
+}
+
+.top-thank{
+	margin-top: 20%;
+}
+
+#detail-header {
+	font-family: 'Poppins', sans-serif;
+	background-image: url('../img/details.jpg');
+	background-size: cover;
+	background-position: center;
+	height: 500px;
+	text-align: center;
+	margin-top: -50px;
+}
+
+#index-header h1, #detail-header h1{
 	font-size: 50px;
 	padding-top: 200px;
 	color: white;
 }
 
-#header h1 span{
+#index-header h1 span, #detail-header h1 span{
 	background-color: red;
 }
 
@@ -84,7 +111,10 @@ body{
 	font-family: 'Poppins', sans-serif;
 }
 
-
+#error-message, #error-message-passenger, #error-message-other{
+	color: red;
+	text-align: center;
+}
 
 
 
@@ -101,8 +131,9 @@ body{
 	margin-bottom: 20px;
 }
 
-.booking-form .form-group .cost-text {
-	padding-top: 25px;
+.booking-form .form-group #cost-text {
+	padding-top: 30px;
+	padding-left: 30px;
 	/* font-family: 'PT Sans', sans-serif; */
 	font-family: 'Poppins', sans-serif;
 }
