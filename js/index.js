@@ -105,22 +105,50 @@ else
   return true
 }
 
-src="https://code.jquery.com/jquery-1.7.2.min.js"
-$(function(){
-  let today = new Date();
-    let tdate = today.getDate(); 
-    let mm = today.getMonth() + 1;
-    let yyyy = today.getFullYear();
-    if (tdate <10){
-      tdate = '0' + tdate;
-    } 
-    if(mm < 10){
-      mm = '0' + mm;
+  function changeDate() {
+  let todayDate = new Date();
+  let month = todayDate.getMonth(); 
+  let year = todayDate.getUTCFullYear() - 0; 
+  lettdate = todayDate.getDate(); 
+  if(month < 10){
+    month = "0" + month 
+  }
+  if(tdate < 10){
+    tdate = "0" + tdate;
+  }
+  let maxDate = year + "-" + month + "-" + tdate;
+  document.getElementById("depart-date").setAttribute("min", maxDate); }
+
+  function changeDate2() {
+    let todayDate = new Date();
+    let month = todayDate.getMonth() + 1; 
+    let year = todayDate.getUTCFullYear(); 
+    lettdate = todayDate.getDate(); 
+    if(month < 10){
+      month = "0" + month 
     }
+    if(tdate < 10){
+      tdate = "0" + tdate;
+    }
+    let maxDate = year + "-" + month + "-" + tdate;
+    document.getElementById("return-date").setAttribute("min", maxDate); }
 
-    minDate = yyyy + '-' + mm + '-' + tdate;
+    function changeDate3() {
+      let todayDate = document.getElementById("depart-date").value;
+      let month = todayDate.getMonth() + 1; 
+      let year = todayDate.getUTCFullYear(); 
+      let tdate = todayDate.getDate(); 
+      if(month < 10){
+        month = "0" + month 
+      }
+      if(tdate < 10){
+        tdate = "0" + tdate;
+      }
+      let maxDate = year + "-" + month + "-" + tdate;
+      document.getElementById("return-date").setAttribute("min", maxDate); }
 
-    document.getElementById("depart-date").setAttribute('min', minDate)
+    
+  
 
 
 
